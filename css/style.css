@@ -1,9 +1,21 @@
-body {
+/*
+    font-family: sweet-sans-pro,sans-serif;
+    font-weight: 500, 700, 800, 900;
+    font-style: normal;  italic if 500 weight
+*/
+
+* {
     margin: 0;
     padding: 0;
 }
+body {
+    font-family: sweet-sans-pro, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 14px;
+}
 
-#header-container {
+#header-section {
     background-image: url("../images/header-background.jpg");
     background-repeat: no-repeat;
     background-position: center;
@@ -19,9 +31,13 @@ body {
 #navigation-logo {
     margin-top: 30px;
     margin-left: 10vw;
-    font-size: 18px;
+    font-weight: 700;
     color: #fff;
     float: left;
+}
+
+#navigation-logo a {
+    font-size: 20px !important;
 }
 
 #navigation-links {
@@ -46,9 +62,9 @@ body {
 
 #top-navigation-container a {
     color: #fff;
+    font-size: 16px;
     text-align: center;
     text-decoration: none;
-    font-size: 18px;
 }
 
 #top-navigation-container a:hover {
@@ -57,20 +73,26 @@ body {
 }
 
 #top-navigation-container a.active {
-    color: cadetblue;
+    color: #5081da;
+}
+
+#hero-container {
+    position: absolute;
 }
 
 #hero-container__text {
-    margin: 20vh 0 0 20vw;
+    margin: 25vh 0 0 20vw;
+    line-height: 85px;
     color: #fff;
-    font-size: 48px;
     width: 500px;
     float: left;
 }
 
 #hero-container__text h1 {
+    font-size: 72px;
+    font-weight: 900;
     margin: 0;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 #hero-container__image {
@@ -79,16 +101,44 @@ body {
 }
 
 #hero-container__image img {
-    width: 50vw;
-    right: 8vw;
-    position: absolute;
+    width: 850px;
+    position: relative;
+    top: -600px;
 }
 
 .redirect-button {
     font-size: 18px;
     color: #fff;
-    background-color: #000;
+    background-color: #5081da;
     padding: 15px 20px 15px 20px;
     text-decoration: none;
     border-radius: 5px;
+}
+
+.redirect-button:hover {
+    padding: 16px 21px 16px 21px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.75);
+}
+
+.redirect-button:active {
+    padding: 14px 19px 14px 19px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.55);
+}
+
+#quotes-section {
+    overflow: hidden;
+    width: 100vw;
+    height: 250px;
+    background-color: #5081da;
+    margin: 0;
+}
+
+.center {
+    text-align: center;
+}
+
+#quotes-section h2 {
+    margin-top: 25px;
+    font-weight: 700;
+    color: #fff;
 }
