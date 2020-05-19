@@ -7,6 +7,7 @@
 * {
     margin: 0;
     padding: 0;
+    /* outline: 1px solid red; */ 
 }
 body {
     font-family: sweet-sans-pro, sans-serif;
@@ -19,8 +20,12 @@ body {
     background-image: url("../images/header-background.jpg");
     background-repeat: no-repeat;
     background-position: center;
+    background-size: fit;
+    background-attachment: fixed;
+    background-position: bottom right;
     width: 100vw;
     height: 100vh;
+    max-width: 100%;
 }
 
 
@@ -77,16 +82,34 @@ body {
 }
 
 #hero-container {
-    position: absolute;
+    display: flex;
+    flex-direction: row;
 }
 
 #hero-container__text {
     margin: 25vh 0 0 20vw;
     line-height: 85px;
     color: #fff;
-    width: 500px;
-    float: left;
+    width: 450px;
+    animation-duration: 1.5s;
+    animation-name: bounceIn;
 }
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.1);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
 
 #hero-container__text h1 {
     font-size: 72px;
@@ -95,15 +118,13 @@ body {
     margin-bottom: 50px;
 }
 
-#hero-container__image {
-    margin: 0;
-    float: right;
-}
 
 #hero-container__image img {
-    width: 850px;
-    position: relative;
-    top: -600px;
+    width: 600px;
+    margin-right: 400px;
+    margin-top: 125px;
+    animation-duration: 1.5s;
+    animation-name: bounceIn;
 }
 
 .redirect-button {
@@ -128,6 +149,7 @@ body {
 #quotes-section {
     overflow: hidden;
     width: 100vw;
+    max-width: 100%;
     height: 250px;
     background-color: #5081da;
     margin: 0;
