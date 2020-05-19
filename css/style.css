@@ -4,6 +4,14 @@
     font-style: normal;  italic if 500 weight
 */
 
+:root {
+    --main-blue-color: #1f4287;
+    --darker-blue-color: #002651;
+    --lighter-blue-color: #5081da;
+    --green-color: #4ddb86;
+    --red-color: #ff304f;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -78,7 +86,7 @@ body {
 }
 
 #top-navigation-container a.active {
-    color: #5081da;
+    color: var(--green-color);
 }
 
 #hero-container {
@@ -115,7 +123,7 @@ body {
     font-size: 72px;
     font-weight: 900;
     margin: 0;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
 }
 
 
@@ -129,29 +137,47 @@ body {
 
 .redirect-button {
     font-size: 18px;
-    color: #fff;
-    background-color: #5081da;
+    color: var(--green-color);
+    
     padding: 15px 20px 15px 20px;
     text-decoration: none;
     border-radius: 5px;
+    border: 3px solid var(--green-color);
 }
 
 .redirect-button:hover {
     padding: 16px 21px 16px 21px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
 }
 
 .redirect-button:active {
     padding: 14px 19px 14px 19px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.55);
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.35);
 }
 
+.redirect-button--small {
+    font-size: 14px;
+    background-color: var(--lighter-blue-color);
+    color: #fff;
+    padding: 10px 15px 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.redirect-button--small:hover {
+    padding: 11px 16px 11px 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+}
+.redirect-button--small:hover {
+    padding: 10px 15px 10px 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+}
 #quotes-section {
     overflow: hidden;
     width: 100vw;
     max-width: 100%;
     height: 250px;
-    background-color: #5081da;
+    background-image: linear-gradient(to bottom right, var(--darker-blue-color), var(--main-blue-color));
     margin: 0;
 }
 
@@ -160,7 +186,124 @@ body {
 }
 
 #quotes-section h2 {
-    margin-top: 25px;
+    margin-top: 40px;
     font-weight: 700;
     color: #fff;
+}
+
+#quote-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    justify-content: center;
+}
+
+.quote-text {
+    text-align: center;
+    width: 225px;
+    font-size: 16px;
+    font-weight: 500;
+    font-style: italic;
+    color: #fff;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.info-section {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 175px;
+}
+
+.info-text-container {
+    width: 650px;
+    margin-top: 125px;
+}
+
+.info-section__heading {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.info-section__paragraph {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 25px;
+    width: 550px;
+}
+
+.space-bottom {
+    margin-bottom: 50px;
+}
+.info-section__image {
+    width: 400px;
+    margin-top: 175px;
+}
+
+#latest-launches-section {
+    overflow: hidden;
+    width: 100vw;
+    max-width: 100%;
+    height: 350px;
+    margin: 0;
+}
+
+.space-left {
+    margin-left: 150px;
+}
+#latest-launches-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.latest-launches-card {
+    margin-top: 50px;
+    margin-left: 25px;
+    margin-right: 25px;
+    width: 450px;
+    height: 250px;
+    background-image: linear-gradient(to bottom right, var(--darker-blue-color), var(--main-blue-color));
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+footer {
+    overflow: hidden;
+    width: 100%;
+    height: 100px;
+    background-image: linear-gradient(to bottom right, var(--darker-blue-color), var(--main-blue-color));
+    
+}
+
+#navigation-links__footer {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 40px;
+    text-align: center;
+}
+
+#navigation-links__footer a {
+    text-decoration: none;
+    color: #fff;
+
+}
+
+.footer-logo {
+    font-size: 18px !important;
+    font-weight: 700;
+}
+
+#navigation-links__footer li {
+    display: inline-block;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#navigation-links__footer a:hover {
+    color: rgb(225, 225, 225);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
