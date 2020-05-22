@@ -88,6 +88,24 @@ function getLatestLaunches() {
                     console.log("rocket id: " + launch_rocket_id);
                     console.log("rocket name: " + launch_rocket_name);
                     console.log("rocket type: " + launch_rocket_type);
+
+
+                    /* Use this html to create the 3 latest cards inside the div id="latest-launches-container" container.
+                    <div class="latest-launches-card">
+                    <div class="latest-launch-card__text-container">
+                        <p class="latest-launches__text bold-text">Mission</p>
+                        <p class="latest-launches__text">Starlink 6</p>
+    
+                        <p class="latest-launches__text bold-text">Rocket</p>
+                        <p class="latest-launches__text">Falcon 9</p>
+    
+                        <p class="latest-launches__text bold-text">Launch date</p>
+                        <p class="latest-launches__text">2020-04-17</p>
+                    </div>
+                    <a class="redirect-button--small space-top" href="#">Read more</a>
+                </div>
+                    */
+
                 }
 
                 // Breaks out of the loop after 3 latest launched launches have been retrived.
