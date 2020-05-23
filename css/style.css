@@ -32,6 +32,7 @@ body {
     background-attachment: fixed;
     width: 100vw;
     height: 100vh;
+    max-height: 1080px;
     min-height: 750px;
     max-width: 100%;
 }
@@ -40,8 +41,9 @@ body {
     height: 700px !important;
 }
 
-.less-margin-top {
-    margin-top: -50px;
+
+.smaller-astronaut img {
+    width: 450px !important;
 }
 
 
@@ -171,7 +173,9 @@ body {
     font-size: 14px;
     background-color: var(--lighter-blue-color);
     color: #fff;
-    padding: 10px 15px 10px 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 125px;
     text-decoration: none;
     border-radius: 5px;
 }
@@ -350,11 +354,6 @@ footer {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
-.hero-container-launches-info{
-    margin-top: -30px;
-    font-size: 20px;
-    font-weight: 700;
-}
 
 #launches-section {
     text-align: center;
@@ -377,8 +376,9 @@ footer {
 
 .launch-info-container {
     background-image: linear-gradient(to bottom right, var(--darker-blue-color), var(--main-blue-color));
-    padding: 25px 10px 25px 10px;
-    margin: 15px auto;
+    width: 90vw;
+    height: 150px;
+    margin: 30px auto;
     display: flex;
     flex-direction: row;
     overflow: hidden;
@@ -391,6 +391,8 @@ footer {
     overflow: hidden;
     margin: 0 auto;
     text-align: center;
+    width: 25%;
+    justify-content: center;
 }
 
 .launch-info__paragraph {
@@ -398,6 +400,49 @@ footer {
     font-weight: 500;
     color: #fff;
 }
+
+#launch-information-section {
+    margin-top: 50px;
+    height: 500px;
+    width: 100vw;
+    max-width: 100%;
+}
+#launch-information-container {
+    width: 75vw;
+    height: 500px;
+    margin: 0 auto;
+}
+
+#header-info-date {
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    margin-top: -30px !important;
+}
+
+#launch-information-heading {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.black-text p {
+    color: #000 !important;
+}
+
+.space-top-50px {
+    margin-top: 50px;
+}
+
+.launch-information-box {
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+
 
 
 @media only screen and (max-width: 1650px)  {
@@ -479,7 +524,6 @@ footer {
     }
 
     #header-section {
-
         height: 60vh;
         max-width: 100%;
     }

@@ -1,12 +1,112 @@
 
 let queryString = `https://api.spacexdata.com/v3/launches?order=desc`;
 
+var getParams = function (url) {
+	var params = {};
+	var parser = document.createElement('a');
+	parser.href = url;
+	var query = parser.search.substring(1);
+	var vars = query.split('&');
+	for (var i = 0; i < vars.length; i++) {
+		var pair = vars[i].split('=');
+		params[pair[0]] = decodeURIComponent(pair[1]);
+	}
+	return params;
+};
+
+let params = getParams(window.location.href);
+console.log(params.flight_number);
+
+if(params.flight_number) {
+    getSpecificLaunch(params.flight_number);
+}
+
+
+function getSpecificLaunch(flightNumber) {
+    let specificQueryString = `https://api.spacexdata.com/v3/launches?flight_number=${flightNumber}`;
+
+    fetch(specificQueryString).then((response) => {
+        return response.json();
+    }).then((data) => {
+        let headerInfoMissionName = document.querySelector("#header-mission-name");
+        let headerInfoDate = document.querySelector("#header-info-date");
+        let launchInfoContainer = document.querySelector("#launch-information-container");
+
+        console.log(data[0]);
+        
+        let mission_name = data[0].mission_name;
+        let launch_date = data[0].launch_date_local.substring(0, 10);
+        let rocket_name = data[0].rocket.rocket_name;
+        let launch_success = data[0].launch_success;
+        let launch_site = data[0].launch_site.site_name;
+        let rocket_type = data[0].rocket.rocket_type;
+
+        if(launch_success === null) {
+            launch_success = "No information"
+        }
+
+        headerInfoMissionName.innerHTML = mission_name;
+        headerInfoDate.innerHTML = launch_date;
+
+        launchInfoContainer.innerHTML = 
+        `
+        <div class="launch-information-box">
+                    <div class="launch-info-container__text-container black-text space-top-50px">
+                        <p class="launch-info__paragraph bold-text">Mission</p>
+                        <p class="launch-info__paragraph">${mission_name}</p>
+                    </div>
+                    <div class="launch-info-container__text-container black-text space-top-50px">
+                        <p class="launch-info__paragraph bold-text">Rocket</p>
+                        <p class="launch-info__paragraph">${rocket_name}</p>
+                    </div>
+                    <div class="launch-info-container__text-container black-text space-top-50px">
+                        <p class="launch-info__paragraph bold-text">Launch date</p>
+                        <p class="launch-info__paragraph">${launch_date}</p>
+                    </div>
+                </div>
+                <div class="launch-information-box">
+                    <div class="launch-info-container__text-container black-text space-top-50px">
+                        <p class="launch-info__paragraph bold-text">Launch site</p>
+                        <p class="launch-info__paragraph">${launch_site}</p>
+                    </div>
+                    <div class="launch-info-container__text-container black-text space-top-50px">
+                        <p class="launch-info__paragraph bold-text">Rocket type</p>
+                        <p class="launch-info__paragraph">${rocket_type}</p>
+                    </div>
+                    <div class="launch-info-container__text-container black-text space-top">
+                        <p class="launch-info__paragraph bold-text">Launch success</p>
+                        <p class="launch-info__paragraph">${launch_success}</p>
+                    </div>
+                </div>
+        `
+    })
+}
+
+getSpecificLaunch();
+
+function getStatistics() {
+    fetch(queryString).then((response) => {
+        return response.json();
+    }).then((data) => {
+        let launchStatisticsHeading = document.querySelector(".launch-statistics");
+        launchStatisticsHeading.innerHTML = `${data.length} launches`;
+        
+    })
+}
+let launchStatisticsHeading = document.querySelector(".launch-statistics");
+if(launchStatisticsHeading) {
+    getStatistics();
+}
+
+
 function getAllLaunches() {
     fetch(queryString).then((response) => {
         return response.json();
     }).then((data) => {
 
-        for(i = 0; i < 10; i++) {
+
+        let allLaunchesContainer = document.querySelector("#all-launches-container");
+        for(i = 0; i < data.length; i++) {
             let launch_details = data[i].details;
             let launch_flight_number = data[i].flight_number;
             let launch_date_year = data[i].launch_year;
@@ -17,23 +117,27 @@ function getAllLaunches() {
             let launch_rocket_name = data[i].rocket.rocket_name;
             let launch_rocket_type = data[i].rocket.rocket_type;
     
-            console.log(`-----Mission id ${i}-----`);
-            
-            console.log("details: " + launch_details);
-            console.log("flight number: " + launch_flight_number);
-            console.log("year: " + launch_date_year);
-            console.log("date: " + launch_date_local);
-            console.log("success: " + launch_success);
-            console.log("Mission name: " + launch_mission_name);
-            console.log("rocket id: " + launch_rocket_id);
-            console.log("rocket name: " + launch_rocket_name);
-            console.log("rocket type: " + launch_rocket_type);
+
+            allLaunchesContainer.innerHTML +=
+            `<div class="launch-info-container">
+                <div class="launch-info-container__text-container">
+                    <p class="launch-info__paragraph bold-text">Rocket</p>
+                    <p class="launch-info__paragraph">${launch_rocket_name}</p>
+                </div>
+                <div class="launch-info-container__text-container">
+                    <p class="launch-info__paragraph bold-text">Mission</p>
+                    <p class="launch-info__paragraph">${launch_mission_name}</p>
+                </div>
+                <div class="launch-info-container__text-container">
+                    <p class="launch-info__paragraph bold-text">Launch Date</p>
+                    <p class="launch-info__paragraph">${launch_date_local.substring(0, 10)}</p>
+                </div>
+                <div class="launch-info-container__text-container">
+                    <a class="redirect-button--small" href="launch.html?flight_number=${launch_flight_number}">Read More</a>
+                </div>
+            </div>`
             
         }
-
-        
-        
-        
         
     });
 }
@@ -112,4 +216,9 @@ function getLatestLaunches() {
 let latestLaunchesContainerExists = document.querySelector("#latest-launches-container");
 if(latestLaunchesContainerExists) {
     getLatestLaunches();
+}
+
+let allLaunchesContainer = document.querySelector("#all-launches-container");
+if(allLaunchesContainer) {
+    getAllLaunches();
 }
