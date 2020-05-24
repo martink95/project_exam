@@ -14,11 +14,12 @@ var getParams = function (url) {
 	return params;
 };
 
-let params = getParams(window.location.href);
-console.log(params.flight_number);
 
-if(params.flight_number) {
-    getSpecificLaunch(params.flight_number);
+if(getParams(window.location.href)) {
+    let params = getParams(window.location.href);
+    if(params.flight_number) {
+        getSpecificLaunch(params.flight_number);
+    }
 }
 
 
@@ -28,11 +29,11 @@ function getSpecificLaunch(flightNumber) {
     fetch(specificQueryString).then((response) => {
         return response.json();
     }).then((data) => {
+
         let headerInfoMissionName = document.querySelector("#header-mission-name");
         let headerInfoDate = document.querySelector("#header-info-date");
         let launchInfoContainer = document.querySelector("#launch-information-container");
 
-        console.log(data[0]);
         
         let mission_name = data[0].mission_name;
         let launch_date = data[0].launch_date_local.substring(0, 10);
@@ -41,8 +42,37 @@ function getSpecificLaunch(flightNumber) {
         let launch_site = data[0].launch_site.site_name;
         let rocket_type = data[0].rocket.rocket_type;
 
+        let launch_images = data[0].links.flickr_images;
+        let launch_images_html = "";
+
+        let article_link = data[0].links.article_link;
+        let article_link_html = "";
+
+        if(article_link !== null) {
+            article_link_html = `<a href="${article_link}">${article_link}</a>`
+        } else {
+            article_link_html = `<p class="launch-info__paragraph">No articles</p>`
+        }
+
+        if(launch_images.length >= 3) {
+            for(i = 0; i < 3; i++) {
+                launch_images_html += `<img class="launch-images" src="${launch_images[i]}" alt="SpaceX rocket launching">`
+            }
+        } else {
+            launch_images_html = " ";
+        }
+
+
+        window.document.title = `SpaceX - ${mission_name}`;
+
         if(launch_success === null) {
             launch_success = "No information"
+        }
+
+        if(launch_success === true) {
+            launch_success = "Yes";
+        } else if(launch_success === false) {
+            launch_success = "No"
         }
 
         headerInfoMissionName.innerHTML = mission_name;
@@ -76,6 +106,15 @@ function getSpecificLaunch(flightNumber) {
                     <div class="launch-info-container__text-container black-text space-top">
                         <p class="launch-info__paragraph bold-text">Launch success</p>
                         <p class="launch-info__paragraph">${launch_success}</p>
+                    </div>
+                </div>
+                <div class="launch-information-box">
+                ${launch_images_html}
+                </div>
+                <div class="launch-information-box">
+                    <div class="launch-info-container__text-container black-text space-top">
+                        <p class="launch-info__paragraph bold-text">Article</p>
+                        ${article_link_html}
                     </div>
                 </div>
         `

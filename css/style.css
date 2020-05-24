@@ -174,6 +174,8 @@ body {
     background-color: var(--lighter-blue-color);
     color: #fff;
     padding-top: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
     padding-bottom: 10px;
     width: 125px;
     text-decoration: none;
@@ -181,13 +183,9 @@ body {
 }
 
 .redirect-button--small:hover {
-    padding: 11px 16px 11px 16px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.25);
 }
-.redirect-button--small:hover {
-    padding: 10px 15px 10px 15px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.35);
-}
+
 #quotes-section {
     overflow: hidden;
     width: 100vw;
@@ -377,7 +375,8 @@ footer {
 .launch-info-container {
     background-image: linear-gradient(to bottom right, var(--darker-blue-color), var(--main-blue-color));
     width: 90vw;
-    height: 150px;
+    padding-top: 25px;
+    padding-bottom: 25px;
     margin: 30px auto;
     display: flex;
     flex-direction: row;
@@ -403,15 +402,25 @@ footer {
 
 #launch-information-section {
     margin-top: 50px;
-    height: 500px;
+    padding-top: 15px;
     width: 100vw;
     max-width: 100%;
 }
 #launch-information-container {
     width: 75vw;
-    height: 500px;
+    padding-top: 10px;
+    padding-bottom: 50px;
     margin: 0 auto;
 }
+
+.launch-images {
+    margin-top: 50px;
+    width: 300px;
+    height: 250px;
+    object-fit: cover;
+    margin: 50px auto;
+}
+
 
 #header-info-date {
     font-size: 16px;
@@ -441,8 +450,56 @@ footer {
 }
 
 
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 150px;
+}
 
+#contact-form label {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
 
+#contact-form input {
+    font-size: 14px;
+    border: 0.5px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    height: 25px;
+    width: 300px;
+    margin-bottom: 15px;
+    padding: 5px;
+}
+
+#contact-form input:focus {
+    border-color: var(--lighter-blue-color);
+}
+
+#contact-form textarea {
+    width: 300px;
+    height: 200px;
+    resize: none;
+    border: 0.5px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    margin-bottom: 15px;
+    padding: 5px;
+}
+
+#contact-form textarea:focus {
+    border-color: var(--lighter-blue-color);
+}
+
+#contact-form-button {
+    border: none;
+    border-radius: 3px;
+    background-color: var(--green-color);
+    width: 150px;
+    margin: 0 auto;
+    height: 30px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+}
 
 
 @media only screen and (max-width: 1650px)  {
@@ -503,6 +560,15 @@ footer {
 
     .launch-info-container__text-container  {
         margin-bottom: 15px;
+        flex-direction: column;
+    }
+
+    .launch-information-box {
+        flex-direction: column;
+    }
+
+    #contact-form {
+        margin-top: 50px;
     }
 }
 
@@ -533,7 +599,7 @@ footer {
     }
     
     .space-right {
-        margin: 0;
+        margin: 25px;
     }
 
     .info-section {
